@@ -1,0 +1,10 @@
+#map {
+    height: 80%;
+    width: 80%;
+    margin:auto;
+  }
+
+body{
+    width:100vw;
+    height: 100vh;
+}
