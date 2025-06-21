@@ -9,16 +9,25 @@ const app = express();
 app.set('view engine', 'pug');
 app.set('views','./views');
 
+
 /* m-utility functions */
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(express.static('public'));
 app.use(cors({origin:'http://127.0.0.1:3031'}));
 
+
 /* webview endpoint: http://localhost:3031/kampala/routes */
 app.get('/kampala/routes', (req, res)=>{
     res.status(200).render('navigate',{});
 });
+
+
+/* supply api key */
+app.get('/security/api/key', (req,res)=>{
+    res.status(200).json({apikey:`${config.get('apikey')}`});
+});
+
 
 /* Starting with 1/2 a minute which is 30,000ms (2 readings per minute) */
 setInterval( async () => {
@@ -123,6 +132,7 @@ setInterval( async () => {
     }, 30000);
 
 
+
 /* logs traffic data between victoria university & Protea hotel at a 5 Mins interval. */
 app.get('/direction', async (req, res) => {
    try{
@@ -132,6 +142,8 @@ app.get('/direction', async (req, res) => {
         res.status(500).send(`ServerError: ${error.message}`);
     }
 });
+
+
 
 /* service port channel */
 const port = process.env.PORT || 3031;

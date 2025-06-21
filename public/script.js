@@ -23,8 +23,8 @@ const geolocator = ()=>{
         });
     };
 
-
-async function initMap() {
+/* Exposing the init function into the window object. */
+window.initMap = async function initMap() {
     try{
             const userlocation = await geolocator();
             const origin  = `${userlocation.latitude}, ${userlocation.longitude}`;
@@ -62,7 +62,7 @@ async function initMap() {
             /* Adding a click event listener. Internally invokes a progress of action route from the backend. */
             google.maps.event.addListener(map,'click', async(event) => {
                 const destination = `${event.latLng.lat()}, ${event.latLng.lng()}`; 
-                console.log('Destination --->',destination);
+                console.log('Destination --->', destination);
                 alert(`Traffic data collection initiated for source coords: [${origin}] and destination coords: [${destination}]`);
                 const result = await fetch(`http://localhost:3031/direction`);
                 console.log("Server_Response: ", result);
@@ -71,6 +71,6 @@ async function initMap() {
     }catch(error){
         console.log("MyError", error);
     }
-}
+};
 
-initMap();
+//initMap();
