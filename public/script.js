@@ -65,7 +65,9 @@ window.initMap = async function initMap() {
                 console.log('Destination --->', destination);
                 alert(`Traffic data collection initiated for source coords: [${origin}] and destination coords: [${destination}]`);
                 const result = await fetch(`http://localhost:3031/direction`);
-                console.log("Server_Response: ", result);
+                const data = await result.json();
+                console.log(data);
+                //console.log("Server_Response: ", result);
             });
 
     }catch(error){

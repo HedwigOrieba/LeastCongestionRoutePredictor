@@ -135,7 +135,21 @@ setInterval( async () => {
 
 /* logs traffic data between victoria university & Protea hotel at a 5 Mins interval. */
 app.get('/direction', async (req, res) => {
-   try{
+    try{
+//         const apiResult = await axios.post('https://routes.googleapis.com/directions/v2:computeRoutes?', {
+//             origin: {location: { latLng: {latitude: 0.347596,longitude: 32.582520}}},
+//             destination: {
+//             location: { latLng: {latitude: 0.3145,longitude: 32.5800}}},
+//             travelMode: "DRIVE",
+//             extraComputations: ["TRAFFIC_ON_POLYLINE"],
+//             routingPreference: "TRAFFIC_AWARE_OPTIMAL",
+//             computeAlternativeRoutes: true}, {
+//             headers: {
+//                 'Content-Type': 'application/json','X-Goog-Api-Key': `${config.get('apikey')}`,
+//                 'X-Goog-FieldMask':'routes.duration,routes.distanceMeters,routes.polyline,routes.legs.polyline,routes.travelAdvisory,routes.legs.travelAdvisory'
+//             }});
+//         //console.log(apiResult.data);
+//         res.status(200).json(apiResult.data);
         res.status(200).json({message:'Traffic conjestion data logging in progress...'});
     } catch(error){
         console.log(error);
